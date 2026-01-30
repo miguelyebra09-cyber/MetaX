@@ -20,18 +20,17 @@
         body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
         
         /* --- 1. VIDEO / HERO DE ENTRADA --- */
-        .hero-video {
-            position: relative; height: 100vh; width: 100%;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            background: #000;
-        }
-        .hero-video video, .hero-video img {
-            position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.6;
-        }
-        .hero-content { z-index: 10; text-align: center; }
-        .hero-content h1 { font-size: 4rem; font-weight: 900; margin: 0; }
-        .hero-content p { letter-spacing: 5px; color: var(--primary); font-weight: 700; }
+       <section class="hero-video">
+    <video autoplay muted loop playsinline id="myVideo">
+        <source src="https://github.com/miguelyebra09-cyber/MetaX/issues/1#issue-3876896056" type="video/mp4">
+        Tu navegador no soporta videos.
+    </video>
+    
+    <div class="hero-content">
+        <p>BIENVENIDO A</p>
+        <h1>METAX</h1>
+    </div>
+</section>
 
         /* --- DIVISORES --- */
         .divider { height: 1px; background: var(--divider); margin: 60px 10%; }
