@@ -3,176 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>METAX | Tu Meta, Tu Tiempo, Tu Historia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
+    <title>Rétate - Cronometraje y Eventos Deportivos</title>
     <style>
+        /* --- ESTILOS GENERALES Y PALETA DE COLORES --- */
         :root {
-            --primary: #00d4ff;
-            --bg: #050505;
-            --card-bg: #111;
-            --text: #ffffff;
-            --whatsapp: #25d366;
-            --divider: #222;
+            --primary-blue: #00A3C4; /* Azul Cyan del logo */
+            --dark-blue: #0F4C75;    /* Azul Oscuro del texto */
+            --accent-glow: #87E6FA;  /* Brillo */
+            --text-dark: #333333;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
         }
 
-        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+        ul { list-style: none; }
+        h2, h3 { color: var(--dark-blue); }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span { color: var(--primary-blue); margin-left: 5px; }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-blue); }
+
+        .btn-cta {
+            background: linear-gradient(90deg, var(--dark-blue), var(--primary-blue));
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 163, 196, 0.3);
+        }
+
+        .btn-cta:hover { transform: scale(1.05); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(15, 76, 117, 0.85), rgba(0, 163, 196, 0.65)), url('https://source.unsplash.com/1600x900/?marathon,crossing-finish-line');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--accent-glow);
+        }
+
+        /* --- SECCIONES COMUNES --- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+        }
         
-        /* --- 1. VIDEO / HERO DE ENTRADA --- */
-       <section class="hero-video">
-    <video autoplay muted loop playsinline id="myVideo">
-        <source src="https://github.com/user-attachments/assets/d86e8bc8-fef8-41b7-94b1-16cf9bbf766c" type="video/mp4">
-        Tu navegador no soporta videos.
-    </video>
-    
-    <div class="hero-content">
-        <p>BIENVENIDO A</p>
-        <h1>METAX</h1>
-    </div>
-</section>
-
-        /* --- DIVISORES --- */
-        .divider { height: 1px; background: var(--divider); margin: 60px 10%; }
-
-        /* --- 2. CARRUSEL (SWIPER) --- */
-        .swiper { width: 80%; height: 400px; border-radius: 20px; }
-        .swiper-slide { position: relative; }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
-        .slide-link {
-            position: absolute; bottom: 20px; left: 20px;
-            background: var(--primary); color: #000; padding: 10px 20px;
-            text-decoration: none; font-weight: 700; border-radius: 5px;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 4px;
+            background: var(--primary-blue);
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
 
-        /* --- 3. GALERÍA ESTÁTICA --- */
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; padding: 0 10%;
-        }
-        .gallery-item { background: var(--card-bg); border-radius: 10px; overflow: hidden; }
-        .gallery-item img { width: 100%; height: 150px; object-fit: cover; }
-        .gallery-item p { padding: 10px; font-size: 0.8rem; color: #aaa; text-align: center; }
-
-        /* --- 4. SECCIÓN SERVICIOS --- */
+        /* --- SERVICIOS (CRONOMETRAJE) --- */
         .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; padding: 0 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
+
         .service-card {
-            background: linear-gradient(145deg, #111, #080808);
-            padding: 40px; border-radius: 20px; border: 1px solid #222;
-        }
-        .service-card h3 { color: var(--primary); margin-top: 0; }
-        .btn-service {
-            display: inline-block; margin-top: 20px; color: var(--primary);
-            text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--primary);
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, border-color 0.3s;
+            border-top: 5px solid transparent;
         }
 
-        /* --- 5. ALIADOS --- */
-        .allies-row {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;
-            padding: 40px 10%; opacity: 0.5; filter: grayscale(100%);
+        .service-card:hover { 
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
         }
-        .allies-row img { height: 50px; }
 
-        /* --- EXTRAS --- */
-        .whatsapp-float {
-            position: fixed; right: 30px; bottom: 30px; background: var(--whatsapp);
-            width: 60px; height: 60px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; z-index: 1000; text-decoration: none;
+        .icon {
+            font-size: 3.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
         }
-        .counter { text-align: center; padding: 20px; font-size: 0.8rem; color: #444; }
+
+        /* --- NUEVA SECCIÓN: GALERÍA --- */
+        .gallery-section {
+            background-color: #fafafa; /* Un fondo ligeramente distinto */
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1); /* Efecto zoom al pasar el mouse */
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(15, 76, 117, 0.8));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+
+        /* --- PATROCINADORES --- */
+        .sponsors {
+            background-color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .sponsors p.intro {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #666;
+        }
+
+        .sponsor-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sponsor-logo {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: all 0.4s;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #ccc;
+            border: 3px dashed #e0e0e0;
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .sponsor-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            border-color: var(--primary-blue);
+            color: var(--dark-blue);
+            box-shadow: 0 5px 15px rgba(0, 163, 196, 0.2);
+        }
+
+        /* --- CONTACTO / FOOTER --- */
+        footer {
+            background: linear-gradient(to bottom, var(--dark-blue), #0a3552);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content h2 { color: var(--white); }
+
+        .contact-btn {
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
+            border-radius: 30px;
+        }
+
+        .contact-btn:hover { 
+            background-color: var(--primary-blue); 
+            box-shadow: 0 5px 20px rgba(0, 163, 196, 0.4);
+        }
+        
+        /* Responsive básico para menú */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
 
     </style>
 </head>
 <body>
 
-    <section class="hero-video">
-          <img src="https://github.com/miguelyebra09-cyber/MetaX/issues/1#issue-3876896056">
+    <header>
+        <div class="navbar">
+            <div class="logo">RÉTATE <span>TIMING</span></div>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#galeria">Galería</a> <a href="#patrocinadores">Patrocinadores</a>
+            </nav>
+            <a href="#contacto" class="btn-cta">Cotizar Evento</a>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
         <div class="hero-content">
-            <p>BIENVENIDO A</p>
-            <h1>METAX</h1>
+            <h1>Supera tus Límites</h1>
+            <h2>Tecnología de precisión para carreras atléticas y eventos deportivos</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;">Cronometraje RFID | Resultados en Vivo | Experiencia Inolvidable</p>
+            <a href="#contacto" class="btn-cta" style="padding: 1rem 2rem; font-size: 1.1rem;">Organiza tu Carrera Hoy</a>
         </div>
     </section>
 
-    <div class="divider"></div>
-
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="https://github.com/user-attachments/assets/d86e8bc8-fef8-41b7-94b1-16cf9bbf766c">
-                <a href="servicios.html" class="slide-link">Ver Más</a>
+    <section class="services" id="servicios">
+        <h2 class="section-title">Nuestras Soluciones</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">⏱️</div>
+                <h3>Cronometraje Electrónico</h3>
+                <p>Utilizamos tecnología de chips RFID de última generación para garantizar la exactitud milimétrica de tiempos en meta y puntos de control.</p>
             </div>
+            <div class="service-card">
+                <div class="icon">📱</div>
+                <h3>Resultados en Vivo</h3>
+                <p>Plataforma web optimizada para móviles donde los atletas consultan sus tiempos, descargan diplomas y comparten sus logros al instante.</p>
             </div>
-        <div class="swiper-pagination"></div>
-    </div>
-
-    <div class="divider"></div>
-
-    <h2 style="text-align:center">GALERÍA DE EVENTOS</h2>
-    <div class="gallery-grid">
-        <div class="gallery-item"><<img width="2410" height="1408" alt="Image" src="https://github.com/user-attachments/assets/fbefc411-9216-4fd1-883b-31b0c2be334b" />><p>Maratón Ciudad México</p></div>
-        <div class="gallery-item"><<img width="2743" height="1408" alt="Image" src="https://github.com/user-attachments/assets/3e55a166-2436-4d4a-b822-ad7c4a0e86f5" />><p>Triatlón Maya</p></div>
-        <div class="gallery-item"><<img width="2726" height="1408" alt="Image" src="https://github.com/user-attachments/assets/a5d3db9a-2f2d-4d54-a87f-5c381f9950bf" />><p>Ciclismo de Montaña</p></div>
-        <div class="gallery-item"><<img width="1536" height="544" alt="Image" src="https://github.com/user-attachments/assets/083e21ed-e236-44e0-a227-243110db8545" />><p>Carrera 5K Nocturna</p></div>
-        <div class="gallery-item"><<img width="1472" height="622" alt="Image" src="https://github.com/user-attachments/assets/dae57786-4307-40af-98d8-f08df94441d8" />><p>Ironman Cozumel</p></div>
-    </div>
-
-    <div class="divider"></div>
-
-    <h2 style="text-align:center">NUESTROS SERVICIOS</h2>
-    <div class="services-grid">
-        <div class="service-card">
-            <h3>Cronometraje Electrónico</h3>
-            <p>Precisión milimétrica con tecnología RFID para cada competidor.</p>
-            <a href="cronometraje.html" class="btn-service">SABER MÁS</a>
+            <div class="service-card">
+                <div class="icon">🚀</div>
+                <h3>Activación de Patrocinios</h3>
+                <p>Integramos a tus marcas aliadas en la experiencia del corredor: desde el arco de meta digital hasta los resultados personalizados.</p>
+            </div>
         </div>
-        <div class="service-card">
-            <h3>Resultados en Vivo</h3>
-            <p>Consulta de tiempos en tiempo real desde cualquier dispositivo.</p>
-            <a href="resultados.html" class="btn-service">SABER MÁS</a>
+    </section>
+
+    <section class="gallery-section" id="galeria">
+        <h2 class="section-title">Galería de Eventos</h2>
+        <p style="margin-bottom: 3rem; color: #666;">Capturamos la emoción de cada desafío. Así se viven nuestras carreras.</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/600x400/?running,race,marathon" alt="Corredores en la salida">
+                <div class="gallery-overlay">La gran salida</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/600x400/?runner,finish-line,celebration" alt="Cruzando la meta">
+                <div class="gallery-overlay">Momento de victoria</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/600x400/?sports-timing,technology" alt="Equipo de cronometraje">
+                <div class="gallery-overlay">Tecnología de punta</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://source.unsplash.com/600x400/?marathon-medal,hands" alt="Entrega de medallas">
+                <div class="gallery-overlay">Tu esfuerzo recompensado</div>
+            </div>
+             <div class="gallery-item">
+                <img src="https://source.unsplash.com/600x400/?crowd,cheering,sports" alt="Público animando">
+                <div class="gallery-overlay">El mejor ambiente</div>
+            </div>
+             <div class="gallery-item">
+                <img src="https://source.unsplash.com/600x400/?trail-running,mountains" alt="Carrera de trail">
+                <div class="gallery-overlay">Desafíos todo terreno</div>
+            </div>
         </div>
-        <div class="service-card">
-            <h3>Activación de Patrocinios</h3>
-            <p>Hacemos que las marcas resalten en el corazón del evento.</p>
-            <a href="marketing.html" class="btn-service">SABER MÁS</a>
+    </section>
+
+
+    <section class="sponsors" id="patrocinadores">
+        <h2 class="section-title">Aliados Estratégicos</h2>
+        <p class="intro">Impulsando el deporte junto a las mejores marcas. Ofrecemos espacios de alto impacto para conectar con tu audiencia.</p>
+        
+        <div class="sponsor-grid">
+            <div class="sponsor-logo">TU MARCA AQUÍ</div>
+            <div class="sponsor-logo">ESPACIO PREMIUM</div>
+            <div class="sponsor-logo">ALIADO GOLD</div>
+            <div class="sponsor-logo">PARTNER TÉCNICO</div>
         </div>
-        <div class="service-card">
-            <h3>Diseño e Imagen</h3>
-            <p>Identidad visual impactante para tu competencia.</p>
-            <a href="diseno.html" class="btn-service">SABER MÁS</a>
+        <br><br><br>
+        <a href="#contacto" style="color: var(--primary-blue); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--primary-blue);">Descarga nuestro Dossier de Patrocinio</a>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-content">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Listo para organizar tu próximo evento?</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Llevamos la logística y precisión de tu carrera al siguiente nivel.</p>
+            <button class="contact-btn">CONTACTAR AHORA</button>
+            
+            <div style="margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.6;">
+                <p>&copy; 2025 Rétate Timing - Supera tus Límites. Todos los derechos reservados.</p>
+            </div>
         </div>
-        <div class="service-card">
-            <h3>Playeras Personalizadas</h3>
-            <p>Calidad técnica premium para el recuerdo del corredor.</p>
-            <a href="playeras.html" class="btn-service">SABER MÁS</a>
-        </div>
-    </div>
+    </footer>
 
-    <div class="divider"></div>
-
-    <h2 style="text-align:center; font-size: 1rem; color: #555;">ALIADOS ESTRATÉGICOS</h2>
-    <div class="allies-row">
-      <img width="659" height="309" alt="Image" img width="2410" height="1408" alt="Image" src="https://github.com/user-attachments/assets/fbefc411-9216-4fd1-883b-31b0c2be334b" />>
-    <img width="3712" height="1152" alt="Image" img width="2743" height="1408" alt="Image" src="https://github.com/user-attachments/assets/3e55a166-2436-4d4a-b822-ad7c4a0e86f5" />
-        <img width="1036" height="367" alt="Image" img width="1536" height="544" alt="Image" src="https://github.com/user-attachments/assets/083e21ed-e236-44e0-a227-243110db8545" />
-    </div>
-
-    <div class="counter">
-        Visitas: <span id="visit-count">00245</span>
-    </div>
-
-    <a href="https://wa.me/TUNUMERO" class="whatsapp-float">
-        <span style="color:white; font-weight:bold;">WA</span>
-    </a>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            pagination: { el: ".swiper-pagination", clickable: true },
-            autoplay: { delay: 3000 },
-        });
-    </script>
 </body>
 </html>
