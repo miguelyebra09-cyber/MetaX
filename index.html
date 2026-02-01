@@ -85,7 +85,8 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            background: linear-gradient(rgba(15, 76, 117, 0.85), rgba(0, 163, 196, 0.65)), url('https://source.unsplash.com/1600x900/?marathon,crossing-finish-line');
+            /* Imagen de Fondo Actualizada */
+            background: linear-gradient(rgba(15, 76, 117, 0.7), rgba(0, 163, 196, 0.5)), url('https://github.com/user-attachments/assets/fbefc411-9216-4fd1-883b-31b0c2be334b');
             background-size: cover;
             background-position: center;
             height: 90vh;
@@ -103,6 +104,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 900;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
         .hero-content h2 {
@@ -110,6 +112,7 @@
             font-weight: 400;
             margin-bottom: 2rem;
             color: var(--accent-glow);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
         /* --- SECCIONES COMUNES --- */
@@ -138,7 +141,7 @@
             border-radius: 2px;
         }
 
-        /* --- SERVICIOS (CRONOMETRAJE) --- */
+        /* --- SERVICIOS --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -165,9 +168,9 @@
             margin-bottom: 1.5rem;
         }
 
-        /* --- NUEVA SECCIÓN: GALERÍA --- */
+        /* --- GALERÍA --- */
         .gallery-section {
-            background-color: #fafafa; /* Un fondo ligeramente distinto */
+            background-color: #fafafa;
         }
         
         .gallery-grid {
@@ -193,7 +196,7 @@
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1); /* Efecto zoom al pasar el mouse */
+            transform: scale(1.1);
         }
 
         .gallery-overlay {
@@ -212,50 +215,29 @@
             transform: translateY(0);
         }
 
-
         /* --- PATROCINADORES --- */
-        .sponsors {
-            background-color: var(--white);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .sponsors p.intro {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            color: #666;
-        }
-
         .sponsor-grid {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 3rem;
+            gap: 2rem;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .sponsor-logo {
+        .sponsor-logo-img {
+            max-width: 180px;
+            height: auto;
             filter: grayscale(100%);
-            opacity: 0.5;
+            opacity: 0.7;
             transition: all 0.4s;
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: #ccc;
-            border: 3px dashed #e0e0e0;
-            padding: 1.5rem 2.5rem;
-            border-radius: 12px;
-            text-transform: uppercase;
         }
 
-        .sponsor-logo:hover {
+        .sponsor-logo-img:hover {
             filter: grayscale(0%);
             opacity: 1;
-            border-color: var(--primary-blue);
-            color: var(--dark-blue);
-            box-shadow: 0 5px 15px rgba(0, 163, 196, 0.2);
+            transform: scale(1.05);
         }
 
         /* --- CONTACTO / FOOTER --- */
@@ -264,11 +246,6 @@
             color: var(--white);
             padding: 5rem 2rem;
             text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .footer-content h2 { color: var(--white); }
@@ -291,12 +268,10 @@
             box-shadow: 0 5px 20px rgba(0, 163, 196, 0.4);
         }
         
-        /* Responsive básico para menú */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero-content h1 { font-size: 2.5rem; }
         }
-
     </style>
 </head>
 <body>
@@ -307,7 +282,8 @@
             <nav class="nav-links">
                 <a href="#inicio">Inicio</a>
                 <a href="#servicios">Servicios</a>
-                <a href="#galeria">Galería</a> <a href="#patrocinadores">Patrocinadores</a>
+                <a href="#galeria">Galería</a> 
+                <a href="#patrocinadores">Patrocinadores</a>
             </nav>
             <a href="#contacto" class="btn-cta">Cotizar Evento</a>
         </div>
@@ -316,7 +292,7 @@
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>Supera tus Límites</h1>
-            <h2>Tecnología de precisión para carreras atléticas y eventos deportivos</h2>
+            <h2>Tecnología de precisión para carreras atléticas</h2>
             <p style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;">Cronometraje RFID | Resultados en Vivo | Experiencia Inolvidable</p>
             <a href="#contacto" class="btn-cta" style="padding: 1rem 2rem; font-size: 1.1rem;">Organiza tu Carrera Hoy</a>
         </div>
@@ -328,76 +304,66 @@
             <div class="service-card">
                 <div class="icon">⏱️</div>
                 <h3>Cronometraje Electrónico</h3>
-                <p>Utilizamos tecnología de chips RFID de última generación para garantizar la exactitud milimétrica de tiempos en meta y puntos de control.</p>
+                <p>Utilizamos tecnología de chips RFID de última generación para garantizar la exactitud milimétrica.</p>
             </div>
             <div class="service-card">
                 <div class="icon">📱</div>
                 <h3>Resultados en Vivo</h3>
-                <p>Plataforma web optimizada para móviles donde los atletas consultan sus tiempos, descargan diplomas y comparten sus logros al instante.</p>
+                <p>Plataforma web optimizada para móviles donde los atletas consultan sus tiempos al instante.</p>
             </div>
             <div class="service-card">
                 <div class="icon">🚀</div>
-                <h3>Activación de Patrocinios</h3>
-                <p>Integramos a tus marcas aliadas en la experiencia del corredor: desde el arco de meta digital hasta los resultados personalizados.</p>
+                <h3>Activación de Marcas</h3>
+                <p>Integramos a tus aliados en la experiencia del corredor con visibilidad digital y física.</p>
             </div>
         </div>
     </section>
 
     <section class="gallery-section" id="galeria">
         <h2 class="section-title">Galería de Eventos</h2>
-        <p style="margin-bottom: 3rem; color: #666;">Capturamos la emoción de cada desafío. Así se viven nuestras carreras.</p>
-        
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="https://source.unsplash.com/600x400/?running,race,marathon" alt="Corredores en la salida">
+                <img src="https://github.com/user-attachments/assets/3e55a166-2436-4d4a-b822-ad7c4a0e86f5" alt="MetaX Evento 1">
                 <div class="gallery-overlay">La gran salida</div>
             </div>
             <div class="gallery-item">
-                <img src="https://source.unsplash.com/600x400/?runner,finish-line,celebration" alt="Cruzando la meta">
+                <img src="https://github.com/user-attachments/assets/a5d3db9a-2f2d-4d54-a87f-5c381f9950bf" alt="MetaX Evento 2">
                 <div class="gallery-overlay">Momento de victoria</div>
             </div>
             <div class="gallery-item">
-                <img src="https://source.unsplash.com/600x400/?sports-timing,technology" alt="Equipo de cronometraje">
+                <img src="https://github.com/user-attachments/assets/083e21ed-e236-44e0-a227-243110db8545" alt="MetaX Evento 3">
                 <div class="gallery-overlay">Tecnología de punta</div>
             </div>
             <div class="gallery-item">
-                <img src="https://source.unsplash.com/600x400/?marathon-medal,hands" alt="Entrega de medallas">
+                <img src="https://github.com/user-attachments/assets/dae57786-4307-40af-98d8-f08df94441d8" alt="MetaX Evento 4">
                 <div class="gallery-overlay">Tu esfuerzo recompensado</div>
             </div>
-             <div class="gallery-item">
-                <img src="https://source.unsplash.com/600x400/?crowd,cheering,sports" alt="Público animando">
+            <div class="gallery-item">
+                <img src="https://github.com/user-attachments/assets/b852cd2a-4397-446d-840c-bf8e0235ceec" alt="MetaX Evento 5">
                 <div class="gallery-overlay">El mejor ambiente</div>
             </div>
-             <div class="gallery-item">
-                <img src="https://source.unsplash.com/600x400/?trail-running,mountains" alt="Carrera de trail">
+            <div class="gallery-item">
+                <img src="https://github.com/user-attachments/assets/a815f694-b10f-4680-82b1-ad9541842601" alt="MetaX Evento 6">
                 <div class="gallery-overlay">Desafíos todo terreno</div>
             </div>
         </div>
     </section>
 
-
     <section class="sponsors" id="patrocinadores">
         <h2 class="section-title">Aliados Estratégicos</h2>
-        <p class="intro">Impulsando el deporte junto a las mejores marcas. Ofrecemos espacios de alto impacto para conectar con tu audiencia.</p>
-        
         <div class="sponsor-grid">
-            <div class="sponsor-logo">TU MARCA AQUÍ</div>
-            <div class="sponsor-logo">ESPACIO PREMIUM</div>
-            <div class="sponsor-logo">ALIADO GOLD</div>
-            <div class="sponsor-logo">PARTNER TÉCNICO</div>
-        </div>
-        <br><br><br>
-        <a href="#contacto" style="color: var(--primary-blue); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--primary-blue);">Descarga nuestro Dossier de Patrocinio</a>
+            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/2dda3a1c-7e51-4640-b849-423cee71fdfe" alt="Sponsor 1">
+            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/feeefdaf-0de8-41ac-bbf2-65e6386ead05" alt="Sponsor 2">
+            </div>
     </section>
 
     <footer id="contacto">
         <div class="footer-content">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Listo para organizar tu próximo evento?</h2>
-            <p style="font-size: 1.2rem; opacity: 0.9;">Llevamos la logística y precisión de tu carrera al siguiente nivel.</p>
+            <h2>¿Listo para organizar tu próximo evento?</h2>
+            <p>Llevamos la logística y precisión de tu carrera al siguiente nivel.</p>
             <button class="contact-btn">CONTACTAR AHORA</button>
-            
             <div style="margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.6;">
-                <p>&copy; 2025 MetaX Timing - Tu Meta,Tu Tiempo, Tu Historia. Todos los derechos reservados.</p>
+                <p>&copy; 2026 MetaX Timing - Tu Meta, Tu Tiempo, Tu Historia. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
