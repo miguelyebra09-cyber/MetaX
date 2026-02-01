@@ -21,6 +21,7 @@
             padding: 0;
             color: var(--text-dark);
             line-height: 1.6;
+            background-color: var(--white);
         }
 
         a { text-decoration: none; }
@@ -79,202 +80,141 @@
             font-weight: bold;
             transition: transform 0.2s;
             box-shadow: 0 4px 15px rgba(0, 163, 196, 0.3);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-cta:hover { transform: scale(1.05); }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            /* Imagen de Fondo Actualizada */
-            background: linear-gradient(rgba(15, 76, 117, 0.7), rgba(0, 163, 196, 0.5)), url('https://github.com/user-attachments/assets/07adfc56-7880-4ff4-baf1-0b7283ef6471');
+        /* --- MODAL DE VIDEO --- */
+        .video-modal {
+            display: flex;
+            position: fixed;
+            z-index: 3000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .close-video {
+            position: absolute;
+            top: -40px; right: 0;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* --- HERO CARRUSEL --- */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
-            height: 90vh;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--white);
-            padding-top: 80px;
+            color: white;
         }
 
+        .slide.active { opacity: 1; z-index: 1; }
+
+        /* --- EFECTO NEÓN Y TEXTOS --- */
+        .hero-content { z-index: 10; padding: 0 20px; }
+
         .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 900;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+            color: #fff;
+            text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px var(--primary-blue), 0 0 42px var(--primary-blue);
+            animation: pulsado-neon 1.5s infinite alternate;
         }
 
         .hero-content h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
+            font-size: clamp(1rem, 4vw, 1.8rem);
             margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+            transition-delay: 0.3s;
             color: var(--accent-glow);
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            text-shadow: 0 0 5px rgba(135, 230, 250, 0.8);
         }
 
-        /* --- SECCIONES COMUNES --- */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-            text-transform: uppercase;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50%;
-            height: 4px;
-            background: var(--primary-blue);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        /* --- SERVICIOS --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s, border-color 0.3s;
-            border-top: 5px solid transparent;
-        }
-
-        .service-card:hover { 
-            transform: translateY(-10px);
-            border-color: var(--primary-blue);
-        }
-
-        .icon {
-            font-size: 3.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- GALERÍA --- */
-        .gallery-section {
-            background-color: #fafafa;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 250px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(15, 76, 117, 0.8));
-            color: white;
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
+        .slide.active .hero-content h1,
+        .slide.active .hero-content h2 {
+            opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- PATROCINADORES --- */
-        .sponsor-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+        @keyframes pulsado-neon {
+            from { text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px var(--primary-blue); }
+            to { text-shadow: 0 0 4px #fff, 0 0 15px var(--primary-blue), 0 0 40px var(--primary-blue); }
         }
 
-        .sponsor-logo-img {
-            max-width: 180px;
-            height: auto;
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: all 0.4s;
-        }
+        /* --- SECCIONES --- */
+        section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 3rem; position: relative; display: inline-block; text-transform: uppercase; }
+        .section-title::after { content: ''; display: block; width: 50%; height: 4px; background: var(--primary-blue); margin: 15px auto 0; border-radius: 2px; }
 
-        .sponsor-logo-img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.05);
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--white); padding: 3rem 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s; border-top: 5px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--primary-blue); }
+        .icon { font-size: 3.5rem; color: var(--primary-blue); margin-bottom: 1.5rem; }
 
-        /* --- CONTACTO / FOOTER --- */
-        footer {
-            background: linear-gradient(to bottom, var(--dark-blue), #0a3552);
-            color: var(--white);
-            padding: 5rem 2rem;
-            text-align: center;
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .gallery-item { position: relative; height: 250px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(15, 76, 117, 0.8)); color: white; padding: 1rem; transform: translateY(100%); transition: 0.3s; }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
 
-        .footer-content h2 { color: var(--white); }
+        .sponsor-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+        .sponsor-logo-img { max-width: 150px; filter: grayscale(100%); opacity: 0.7; transition: 0.4s; }
+        .sponsor-logo-img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
 
-        .contact-btn {
-            background-color: transparent;
-            border: 2px solid var(--primary-blue);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 2rem;
-            border-radius: 30px;
-        }
+        footer { background: linear-gradient(to bottom, var(--dark-blue), #0a3552); color: var(--white); padding: 5rem 2rem; text-align: center; }
+        .contact-btn { background: transparent; border: 2px solid var(--primary-blue); color: white; padding: 1rem 2rem; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .contact-btn:hover { background: var(--primary-blue); box-shadow: 0 0 20px var(--primary-blue); }
 
-        .contact-btn:hover { 
-            background-color: var(--primary-blue); 
-            box-shadow: 0 5px 20px rgba(0, 163, 196, 0.4);
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-content h1 { font-size: 2.5rem; }
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
+
+    <div id="videoModal" class="video-modal">
+        <div class="modal-content">
+            <span class="close-video" id="closeVideo">&times;</span>
+            <video id="introVideo" width="100%" autoplay muted controls>
+                <source src="https://github.com/user-attachments/assets/d86e8bc8-fef8-41b7-94b1-16cf9bbf766c" type="video/mp4">
+            </video>
+        </div>
+    </div>
 
     <header>
         <div class="navbar">
@@ -289,12 +229,38 @@
         </div>
     </header>
 
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Supera tus Límites</h1>
-            <h2>Tecnología de precisión para carreras atléticas</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;">Cronometraje RFID | Resultados en Vivo | Experiencia Inolvidable</p>
-            <a href="#contacto" class="btn-cta" style="padding: 1rem 2rem; font-size: 1.1rem;">Organiza tu Carrera Hoy</a>
+    <section class="hero-carousel" id="inicio">
+        <div class="carousel-container">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://github.com/user-attachments/assets/fbefc411-9216-4fd1-883b-31b0c2be334b');">
+                <div class="hero-content">
+                    <h1>Supera tus Límites</h1>
+                    <h2>Tu Meta, Tu Tiempo, Tu Historia</h2>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://github.com/user-attachments/assets/3e55a166-2436-4d4a-b822-ad7c4a0e86f5');">
+                <div class="hero-content">
+                    <h1>Cronometraje RFID</h1>
+                    <h2>Precisión absoluta en cada kilómetro</h2>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://github.com/user-attachments/assets/a5d3db9a-2f2d-4d54-a87f-5c381f9950bf');">
+                <div class="hero-content">
+                    <h1>Resultados en Vivo</h1>
+                    <h2>Consulta tu tiempo al instante</h2>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://github.com/user-attachments/assets/a815f694-b10f-4680-82b1-ad9541842601');">
+                <div class="hero-content">
+                    <h1>Eventos Pro</h1>
+                    <h2>Logística de nivel internacional</h2>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://github.com/user-attachments/assets/feeefdaf-0de8-41ac-bbf2-65e6386ead05');">
+                <div class="hero-content">
+                    <h1>MetaX Timing</h1>
+                    <h2>Liderando la innovación deportiva</h2>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -304,17 +270,17 @@
             <div class="service-card">
                 <div class="icon">⏱️</div>
                 <h3>Cronometraje Electrónico</h3>
-                <p>Utilizamos tecnología de chips RFID de última generación para garantizar la exactitud milimétrica.</p>
+                <p>Chips RFID de última generación para exactitud milimétrica.</p>
             </div>
             <div class="service-card">
                 <div class="icon">📱</div>
                 <h3>Resultados en Vivo</h3>
-                <p>Plataforma web optimizada para móviles donde los atletas consultan sus tiempos al instante.</p>
+                <p>Plataforma web donde los atletas consultan sus logros al instante.</p>
             </div>
             <div class="service-card">
                 <div class="icon">🚀</div>
                 <h3>Activación de Marcas</h3>
-                <p>Integramos a tus aliados en la experiencia del corredor con visibilidad digital y física.</p>
+                <p>Visibilidad estratégica para tus aliados comerciales.</p>
             </div>
         </div>
     </section>
@@ -322,59 +288,49 @@
     <section class="gallery-section" id="galeria">
         <h2 class="section-title">Galería de Eventos</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://github.com/user-attachments/assets/3e55a166-2436-4d4a-b822-ad7c4a0e86f5" alt="MetaX Evento 1">
-                <div class="gallery-overlay">La gran salida</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://github.com/user-attachments/assets/a5d3db9a-2f2d-4d54-a87f-5c381f9950bf" alt="MetaX Evento 2">
-                <div class="gallery-overlay">Momento de victoria</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://github.com/user-attachments/assets/083e21ed-e236-44e0-a227-243110db8545" alt="MetaX Evento 3">
-                <div class="gallery-overlay">Tecnología de punta</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://github.com/user-attachments/assets/dae57786-4307-40af-98d8-f08df94441d8" alt="MetaX Evento 4">
-                <div class="gallery-overlay">Tu esfuerzo recompensado</div>
-            </div>
-            <div class="gallery-item">
-                <img src="c" alt="MetaX Evento 5">
-                <div class="gallery-overlay">El mejor ambiente</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://github.com/user-attachments/assets/dae57786-4307-40af-98d8-f08df94441d8" alt="MetaX Evento 6">
-                <div class="gallery-overlay">Desafíos todo terreno</div>
-            </div>
+            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/3e55a166-2436-4d4a-b822-ad7c4a0e86f5" alt="1"><div class="gallery-overlay">La Gran Salida</div></div>
+            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/a5d3db9a-2f2d-4d54-a87f-5c381f9950bf" alt="2"><div class="gallery-overlay">Victoria</div></div>
+            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/083e21ed-e236-44e0-a227-243110db8545" alt="3"><div class="gallery-overlay">Tecnología</div></div>
+            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/dae57786-4307-40af-98d8-f08df94441d8" alt="4"><div class="gallery-overlay">Esfuerzo</div></div>
+            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/b852cd2a-4397-446d-840c-bf8e0235ceec" alt="5"><div class="gallery-overlay">Ambiente</div></div>
+            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/a815f694-b10f-4680-82b1-ad9541842601" alt="6"><div class="gallery-overlay">Trail Running</div></div>
         </div>
     </section>
 
     <section class="sponsors" id="patrocinadores">
         <h2 class="section-title">Aliados Estratégicos</h2>
         <div class="sponsor-grid">
-            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/2dda3a1c-7e51-4640-b849-423cee71fdfe" alt="Sponsor 1">
-            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/feeefdaf-0de8-41ac-bbf2-65e6386ead05" alt="Sponsor 2">
-            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/a815f694-b10f-4680-82b1-ad9541842601" alt="Sponsor 3">        
-            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/a815f694-b10f-4680-82b1-ad9541842601" alt="Sponsor 4">"    
-        </div>
- <div class="sponsor-grid">
-            <div class="sponsor-logo">TU MARCA AQUÍ</div>
-            <div class="sponsor-logo">ESPACIO PREMIUM</div>
-            <div class="sponsor-logo">ALIADO GOLD</div>
-            <div class="sponsor-logo">PARTNER TÉCNICO</div>
+            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/2dda3a1c-7e51-4640-b849-423cee71fdfe" alt="S1">
+            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/feeefdaf-0de8-41ac-bbf2-65e6386ead05" alt="S2">
+            <img class="sponsor-logo-img" src="https://github.com/user-attachments/assets/a815f694-b10f-4680-82b1-ad9541842601" alt="S3">
         </div>
     </section>
 
     <footer id="contacto">
         <div class="footer-content">
-            <h2>¿Listo para organizar tu próximo evento?</h2>
-            <p>Llevamos la logística y precisión de tu carrera al siguiente nivel.</p>
+            <h2>¿Listo para organizar tu carrera?</h2>
             <button class="contact-btn">CONTACTAR AHORA</button>
-            <div style="margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.6;">
-                <p>&copy; 2026 MetaX Timing - Tu Meta, Tu Tiempo, Tu Historia. Todos los derechos reservados.</p>
-            </div>
+            <p style="margin-top: 30px; opacity: 0.7;">&copy; 2026 MetaX Timing - Tu Meta, Tu Tiempo, Tu Historia.</p>
         </div>
     </footer>
 
+    <script>
+        // --- VIDEO LOGIC ---
+        const modal = document.getElementById("videoModal");
+        const video = document.getElementById("introVideo");
+        const close = document.getElementById("closeVideo");
+
+        close.onclick = () => { modal.style.display = "none"; video.pause(); };
+        window.onclick = (e) => { if (e.target == modal) { modal.style.display = "none"; video.pause(); } };
+
+        // --- CAROUSEL LOGIC ---
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5000);
+    </script>
 </body>
 </html>
