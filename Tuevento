@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metax - Gran Maratón 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --metax-blue: #002B5B; /* Azul del logo */
+            --metax-light: #F8F9FA;
+            --metax-accent: #0056b3;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        /* Estilos del Carrusel */
+        .carousel-item {
+            height: 60vh;
+            min-height: 400px;
+            background: no-repeat center center scroll;
+            background-size: cover;
+        }
+        .carousel-caption {
+            background: rgba(0, 43, 91, 0.7); /* Azul Metax con transparencia */
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        /* Sección Inscripciones */
+        .inscripciones {
+            padding: 80px 0;
+            background-color: var(--metax-light);
+        }
+        .card-distancia {
+            border: none;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--metax-blue);
+        }
+        .card-distancia:hover {
+            transform: translateY(-10px);
+        }
+        .btn-metax {
+            background-color: var(--metax-blue);
+            color: white;
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-weight: bold;
+        }
+        .btn-metax:hover {
+            background-color: var(--metax-accent);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark style="background-color: var(--metax-blue);">
+        <div class="container">
+            <a class="navbar-brand" href="#">METAX SPORTS</a>
+        </div>
+    </nav>
+
+    <header>
+        <div id="carruselEventos" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1532444458054-015fddf2b2ca?q=80&w=1470&auto=format&fit=crop');">
+                    <div class="carousel-caption">
+                        <h2>Desafía tus Límites</h2>
+                        <p>Únete a la carrera más importante del año.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1452621933841-718d2f718651?q=80&w=1374&auto=format&fit=crop');">
+                    <div class="carousel-caption">
+                        <h2>Rutas Escénicas</h2>
+                        <p>Corre por los mejores paisajes de la ciudad.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=1470&auto=format&fit=crop');">
+                    <div class="carousel-caption">
+                        <h2>Tecnología Metax</h2>
+                        <p>Monitoreo profesional para cada corredor.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carruselEventos" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carruselEventos" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <section class="inscripciones">
+        <div class="container text-center">
+            <h2 class="mb-5" style="color: var(--metax-blue); font-weight: 800;">INSCRIPCIONES</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card card-distancia h-100 p-4">
+                        <h3>5K</h3>
+                        <p class="text-muted">Recreativo</p>
+                        <hr>
+                        <p>Ideal para familias y principiantes.</p>
+                        <a href="inscripcion-5k.html" class="btn btn-metax mt-auto">Inscribirme</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-distancia h-100 p-4">
+                        <h3>10K</h3>
+                        <p class="text-muted">Intermedio</p>
+                        <hr>
+                        <p>Pon a prueba tu velocidad en asfalto.</p>
+                        <a href="inscripcion-10k.html" class="btn btn-metax mt-auto">Inscribirme</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-distancia h-100 p-4">
+                        <h3>21K</h3>
+                        <p class="text-muted">Medio Maratón</p>
+                        <hr>
+                        <p>Un reto de resistencia y constancia.</p>
+                        <a href="inscripcion-21k.html" class="btn btn-metax mt-auto">Inscribirme</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-distancia h-100 p-4">
+                        <h3>42K</h3>
+                        <p class="text-muted">Maratón Full</p>
+                        <hr>
+                        <p>La máxima prueba para atletas de élite.</p>
+                        <a href="inscripcion-42k.html" class="btn btn-metax mt-auto">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
