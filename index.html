@@ -72,6 +72,13 @@
 
         .nav-links a:hover { color: var(--primary-blue); }
 
+        /* Contenedor de botones en el header */
+        .header-btns {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
         .btn-cta {
             background: linear-gradient(90deg, var(--dark-blue), var(--primary-blue));
             color: var(--white);
@@ -83,9 +90,22 @@
             display: inline-block;
             border: none;
             cursor: pointer;
+            font-size: 0.9rem;
         }
 
-        .btn-cta:hover { transform: scale(1.05); }
+        /* Estilo para el segundo botón (Tu Evento) */
+        .btn-event {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 163, 196, 0.2);
+            border: 2px solid transparent;
+        }
+
+        .btn-cta:hover, .btn-event:hover { transform: scale(1.05); }
 
         /* --- MODAL DE VIDEO --- */
         .video-modal {
@@ -202,7 +222,11 @@
         .contact-btn { background: transparent; border: 2px solid var(--primary-blue); color: white; padding: 1rem 2rem; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 20px; }
         .contact-btn:hover { background: var(--primary-blue); box-shadow: 0 0 20px var(--primary-blue); }
 
-        @media (max-width: 768px) { .nav-links { display: none; } }
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .header-btns { gap: 5px; }
+            .btn-cta, .btn-event { padding: 0.5rem 1rem; font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -210,8 +234,8 @@
     <div id="videoModal" class="video-modal">
         <div class="modal-content">
             <span class="close-video" id="closeVideo">&times;</span>
-            <video id="introVideo" width="100%" autoplay muted controls>
-                <source src="https://github.com/user-attachments/assets/d86e8bc8-fef8-41b7-94b1-16cf9bbf766c" type="video/mp4">
+            <video id="introVideo" width="100%" autoplay controls>
+                <source src="Intro_Animada_con_Neón.mp4" type="video/mp4">
             </video>
         </div>
     </div>
@@ -225,7 +249,10 @@
                 <a href="#galeria">Galería</a> 
                 <a href="#patrocinadores">Patrocinadores</a>
             </nav>
-            <a href="#contacto" class="btn-cta">Cotizar Evento</a>
+            <div class="header-btns">
+                <a href="tuevento.html" class="btn-event">Tu Evento</a>
+                <a href="#contacto" class="btn-cta">Cotizar Evento</a>
+            </div>
         </div>
     </header>
 
@@ -293,7 +320,7 @@
             <div class="gallery-item"><img src="https://github.com/user-attachments/assets/083e21ed-e236-44e0-a227-243110db8545" alt="3"><div class="gallery-overlay">Tecnología</div></div>
             <div class="gallery-item"><img src="https://github.com/user-attachments/assets/dae57786-4307-40af-98d8-f08df94441d8" alt="4"><div class="gallery-overlay">Esfuerzo</div></div>
             <div class="gallery-item"><img src="https://github.com/user-attachments/assets/af7dc675-2e8f-46b4-8f99-f0ddfd385ea7" alt="5"><div class="gallery-overlay">Ambiente</div></div>
-            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/c6384a4e-ed43-42e0-b91f-15f4fded3e2c" alt="6"><div class="gallery-overlay">Logistica</div></div>
+            <div class="gallery-item"><img src="https://github.com/user-attachments/assets/c6384a4e-ed43-42e0-b91f-15f4fded3e2c" alt="6"><div class="gallery-overlay">Logística</div></div>
         </div>
     </section>
 
@@ -307,12 +334,11 @@
         </div>
     </section>
 
-   <footer id="contacto">
+    <footer id="contacto">
         <div class="footer-content">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Listo para organizar tu próximo evento?</h2>
-            <p style="font-size: 1.2rem; opacity: 0.9;">Llevamos la logística y precisión de tu carrera al siguiente nivel.</p>
+            <h2>¿Listo para organizar tu próximo evento?</h2>
+            <p>Llevamos la logística y precisión de tu carrera al siguiente nivel.</p>
             <button class="contact-btn">CONTACTAR AHORA</button>
-            
             <div style="margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.6;">
                 <p>&copy; 2026 MetaX Timing - Tu Meta, Tu Tiempo, Tu Historia. Todos los derechos reservados.</p>
             </div>
@@ -320,15 +346,24 @@
     </footer>
 
     <script>
-        // --- VIDEO LOGIC ---
+        // --- LÓGICA DEL VIDEO ---
         const modal = document.getElementById("videoModal");
         const video = document.getElementById("introVideo");
         const close = document.getElementById("closeVideo");
 
-        close.onclick = () => { modal.style.display = "none"; video.pause(); };
-        window.onclick = (e) => { if (e.target == modal) { modal.style.display = "none"; video.pause(); } };
+        // Función para cerrar modal
+        function closeVideoModal() {
+            modal.style.display = "none";
+            video.pause();
+        }
 
-        // --- CAROUSEL LOGIC ---
+        close.onclick = closeVideoModal;
+        window.onclick = (e) => { if (e.target == modal) closeVideoModal(); };
+
+        // CIERRE AUTOMÁTICO AL TERMINAR EL VIDEO
+        video.onended = closeVideoModal;
+
+        // --- LÓGICA DEL CARRUSEL ---
         const slides = document.querySelectorAll('.slide');
         let current = 0;
         setInterval(() => {
